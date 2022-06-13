@@ -1,0 +1,9 @@
+
+##### split mp4 file into 60mb #####
+MP4Box -splits 61440 'file.mp4'
+
+##### split mkv file into 60mb #####
+mkvmerge -o 'file.mkv' --split 60M 'nfile.mkv'
+
+##### ffmpeg hevc convert with lowest size with good quality #####
+ffmpeg -i input -c:v libx265 -crf 28 -c:a mp3 -b:a 128k output.mp4
