@@ -1,0 +1,9 @@
+##### mysql data dir change if needed #####
+systemctl stop mariadb
+cp -rp /var/lib/mysql /home
+#### if need run chown for permission ####
+chown mysql:mysql /home/mysql
+systemtcl restart mariadb
+ln -s /home/mysql/mysql.sock /var/lib/mysql/mysql.sock 
+
+service mariadb restart
