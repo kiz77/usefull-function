@@ -1,0 +1,103 @@
+##### simple xrdp installation centos 7 ######
+yum groupinstall xfce* -y
+echo xfce4-session >~/.xsession
+echo "startxfce4" > ~/.Xclients
+chmod +x ~/.Xclients
+systemctl set-default graphical.target
+yum -y install xrdp tigervnc-server
+
+service xrdp restart
+systemctl enable xrdp.service
+
+##### software installation ####
+yum install firefox filezilla qbittorrent -y
+yum install filezilla -y
+yum install qbittorrent -y
+yum install HandBrake-* -y
+
+echo xfce4-session >.xsession
+echo "startxfce4" > ~/.Xclients
+
+chmod +x .Xclients
+
+###### gnome xrdp install on centos 7
+
+installation must on root users. ######
+
+yum -y install epel-release
+
+yum -y update
+
+if you want to install gnome
+
+yum -y groupinstall "GNOME Desktop"
+
+activate gnome as default desktop
+
+ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target
+
+systemctl set-default graphical.target
+
+session for gnome user
+echo "gnome-session" > ~/.Xclients
+chmod +x ~/.Xclients
+
+
+
+if you want to install MATE Desktop
+yum -y groupinstall "X Window system"
+yum -y groupinstall "MATE Desktop"
+sudo systemctl set-default graphical.target
+session for MATE desktop
+echo "mate-session" > ~/.Xclients
+chmod +x ~/.Xclients
+
+yum -y install xrdp tigervnc-server
+
+Now you will need to make changes to your SELINUX.
+
+chcon --type=bin_t /usr/sbin/xrdp
+chcon --type=bin_t /usr/sbin/xrdp-sesman
+
+
+
+for firewall: 
+firewall-cmd --permanent --zone=public --add-port=3389/tcp
+firewall-cmd --reload
+
+for iptables 
+iptables -I INPUT -p tcp --dport 3389 -j ACCEPT
+iptables-save
+
+sudo systemctl restart xrdp.service
+
+
+if any user xrdp not work then goto user using su command
+su username
+
+run these two command to access.
+if you have installed gnome then
+echo "gnome-session" > ~/.Xclients
+chmod +x ~/.Xclients
+
+if you have installed MATE
+echo "mate-session" > ~/.Xclients
+chmod +x ~/.Xclients
+
+then restart xrdp user working start.
+
+
+###### ubuntu xrdp ######
+sudo apt update -y
+sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y
+
+sudo apt install xrdp  -y
+sudo systemctl status xrdp
+sudo ufw allow 3389
+
+#### handbrake installation ubuntu ######
+ubuntu handbrake
+apt install software-properties-common
+sudo add-apt-repository ppa:stebbins/handbrake-releases
+sudo apt update
+sudo apt install --install-recommends handbrake-gtk
