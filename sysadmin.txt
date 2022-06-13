@@ -1,0 +1,339 @@
+# usefull system admin commands.
+speed test
+wget -O /dev/null http://speedtest.ftp.otenet.gr/files/test1Gb.db
+curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+
+mount: /dev/sdb is write-protected, mounting read-only
+mount: unknown filesystem type '(null)'
+
+mkfs.ext4 /dev/sdb
+
+blkid | grep sdb 
+
+mkdir /dir
+mount -t auto /dev/sda4 /home1
+
+mount: unknown filesystem type 'linux_raid_member'
+sudo mdadm --examine /dev/sda3
+mdadm -A -R /dev/md9 /dev/sda3
+mount /dev/md9 /home1
+
+set prefix=(hd0,gpt2)/boot/grub2
+set root=(hd0,gpt2)
+linux (hd0,gpt2)/boot/vmlinuz-4...…… root=/dev/md2 ro 
+boot
+
+find port using service 
+netstat -plnt | grep ':8080'
+
+80 port already use kill 
+sudo fuser -k 80/tcp
+sudo fuser -k 443/tcp
+sudo fuser -k 53/tcp
+sudo fuser -k 1194/tcp
+sudo fuser -k 8083/tcp
+sudo fuser -k 8080/tcp
+sudo fuser -k 8989/tcp
+sudo fuser -k 9002/tcp
+sudo fuser -k 1194/udp
+
+/* data transfer fast */
+Have you tried tuning MTU (Maximum Transfer Unit) - the size of the largest network layer protocol data unit that can be communicated in a single network transaction? In our case, switching it from 1500 to 4000 bytes drastically improved the download performance. MTUs supported differs based on IP Transport. Try different values assessing what size makes sense in your use case.
+
+You can use ifconfig to check existing MTU size and use following command to update it at runtime:
+
+ifconfig eth0 mtu 5000
+ifconfig tap_tap mtu 5000
+ifconfig tun0 mtu 50000
+
+/* data transfer end */
+
+
+nano /etc/sysconfig/network-scripts/ifcfg-eth0
+
+DEVICE="eth0:0"
+ONBOOT="yes"
+BOOTPROTO="none"
+IPADDR="new_ip_here"
+NETMASK="255.255.255.255"
+BROADCAST="new_ip_here"
+
+comodo antivirus
+https://www.comodo.com/home/internet-security/antivirus-for-linux.php
+ for centos 64bit
+rpm -ivh https://cdn.download.comodo.com/cis/download/installs/linux/cav-linux_x64.rpm
+
+xrdp for windows 7 
+ /etc/xrdp
+nano xrdp.ini
+
+replace
+ssl_protocols=TLSv1.2, TLSv1.3
+with
+ssl_protocols=TLSv1, TLSv1.1, TLSv1.2, TLSv1.3
+
+cp -rap /var/lib/mysql /home/mysql
+datadir=/home/mysql/
+
+change ftp user location 
+usermod -d /home1/sdf/user/web/site/public_html admin_ftp
+
+system permission issue work like window attrib
+lsattr /etc/hosts
+-----i------- /etc/hosts
+chattr -i /etc/hosts
+
+find a word from all files in location
+cd /location 
+find . -type f -exec grep -l "function url(" {} +
+
+find / -name "libpcre.so"
+
+delete all files from folder
+find . -type f -exec rm -v {} \;
+
+ln -s /home/wapkizextra/httpdlog /var/log/httpd/domains
+ln -s /home/mysql/mysql.sock /var/lib/mysql/mysql.sock
+ln -s /home/mysql /var/lib/mysql
+
+window 10 no internet cmd run admin
+netsh int ip reset resettcpip.txt
+
+netsh winhttp reset proxy
+
+netsh int ip reset
+
+ipconfig /release
+
+ipconfig /renew
+
+ipconfig /flushdns
+
+netsh winsock reset
+
+run second skype
+cd C:\Program Files (x86)\Microsoft\Skype for Desktop
+skype.exe --secondary
+
+mail via ipv4 google policy ipv6
+nano /etc/postfix/main.cf
+inet_protocols = ipv4
+service postfix restart
+
+for expire email not found...
+timeout_frozen_after = 60s
+
+550 helo problem
+find sender_helo_name
+and comment it
+# all conditions..
+add
+auth_advertise_hosts = *
+
+storage problem add devocot 
+namespace inbox {
+inbox = yes
+}
+
+rm -rf /var/spool/exim/db/*
+rm -rf /var/spool/exim/input/*
+rm -rf /var/spool/exim/msglog/*
+rm -rf /var/log/exim/*
+service exim restart
+
+mail check outgoing
+telnet mx1.cpanel.net 25
+
+litespeed php stuck
+LS Admin > Server > External App > lsphp5 > Environment, also all virturlhost
+LSAPI_CHILDREN=500
+PHP_LSAPI_MAX_REQUESTS=10000
+PHP_LSAPI_CHILDREN=500
+
+display urdu in mysql query
+To make this 'permanent', in my.cnf:
+
+[client]
+default-character-set=utf8
+[mysqld]
+character-set-server = utf8
+
+
+mysql table crash repair
+service mysql stop
+myisamchk -rf /var/lib/mysql/[databasename]/table_name.MYI
+service mysql start
+
+chmod 777 /var/lib/php/session
+chmod 777 /var/lib/phpMyAdmin/temp
+yum install php-mbstring -y
+yum install php-gd -y
+chmod -R 755 /home
+timezone select
+  echo "echo \$TZ > /etc/timezone" >> /usr/bin/tzselect
+        tzselect
+        tz=$(cat /etc/timezone)
+		cat /etc/timezone
+
+php -q /etc/sentora/panel/bin/daemon.php
+zppy remove webalizer_stats
+proxy_set_header        X-Forwarded-Proto $scheme;
+pip install --upgrade pip
+
+iptables -I INPUT -p tcp --dport 8006 -j ACCEPT
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+iptables -I INPUT -p tcp --dport 53 -j ACCEPT
+iptables -I INPUT -p udp --dport 53 -j ACCEPT
+
+iptables-save
+iptables -A INPUT -p tcp --destination-port 3306 -j DROP
+service iptables save 
+
+block ip
+/sbin/iptables -I INPUT -s 46.4.85.138 -j DROP
+
+
+cpanel ftp workable
+ iptables -I INPUT -p tcp --dport 30000:50000 -j ACCEPT
+ 
+iptables -I INPUT -p tcp --dport PORT_NUMBER -j ACCEPT
+
+and save command..
+iptables-save
+
+ total active connection check 
+ awk 'END {print NR}' /proc/net/tcp
+ awk 'END {print NR}' /proc/net/udp
+ 
+ Attack check 
+  netstat -n | more
+  
+  attack type
+  FIN_WAIT2
+  LAST_ACK
+  SYN_RECV
+  netstat -n -p | grep SYN_REC | awk '{print $5}' | awk -F: '{print $1}'
+  netstat -n -p | grep SYN_REC | awk '{print $5}' | awk -F: '{print $1}'
+  netstat -n -p | grep SYN_REC | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+  netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+  
+  netstat -anp |grep 'tcp\|udp' | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+  netstat -anp |grep 'tcp' | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+  netstat -anp |grep 'tcp' | awk '{print $5}' | cut -d: -f2 | sort | uniq -c | sort -n | cut -d: -f1 | sort | uniq -c | sort -n
+  netstat -anp |grep 'tcp' | awk '{print $5}' | cut -d: -f3 | sort | uniq -c
+ block ip 
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='173.212.228.229' accept"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='119.30.38.79' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='149.129.145.91' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='42.111.34.81' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='106.78.191.78' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='47.11.17.237' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='27.61.83.120' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='27.97.240.207' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='157.43.1.110' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='49.34.119.155' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='168.235.198.192' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='139.167.75.252' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='157.43.14.81' reject"
+firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='47.9.250.121' reject"
+
+firewall-cmd --reload 
+  
+ 
+firewall-cmd --permanent --direct --remove-rule ipv4 filter INPUT_direct 1 -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 60 --hitcount 30 -j REJECT --reject-with tcp-reset
+firewall-cmd --permanent --direct --remove-rule ipv4 filter INPUT_direct 1 -p tcp --dport 443 -m state --state NEW -m recent --update --seconds 60 --hitcount 30 -j REJECT --reject-with tcp-reset
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 30 --hitcount 20 -j REJECT --reject-with tcp-reset
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 443 -m state --state NEW -m recent --update --seconds 30 --hitcount 20 -j REJECT --reject-with tcp-reset
+firewall-cmd --reload 
+
+firewall-cmd --permanent --direct --get-all-rules 
+
+/etc/modprobe.d/xt.conf
+ 
+ ddoss 
+ get ip connections list 
+ netstat -ntu | tail -n +3 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+ netstat -ntu  | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+ 
+ route add  134.122.59.209 reject
+ route add 173.212.228.229 accept
+ 
+     sudo firewall-cmd --zone=public --permanent --add-port=7080/tcp
+     sudo firewall-cmd --zone=public --permanent --add-port=9278/tcp
+     sudo firewall-cmd --zone=public --permanent --add-port=80/tcp
+    sudo firewall-cmd --zone=public --permanent --add-port=4990-4999/udp
+    sudo firewall-cmd --zone=public --permanent --list-ports
+    
+     storage
+mount: /dev/sdb is write-protected, mounting read-only
+mount: unknown filesystem type '(null)'
+
+mkfs.ext4 /dev/sdb
+
+blkid | grep sdb 
+
+mkdir /dir
+mount -t auto /dev/sda /home1
+
+mount: unknown filesystem type 'linux_raid_member'
+sudo mdadm --examine /dev/sda3
+mdadm -A -R /dev/md1 /dev/sda
+mount /dev/md9 /home1
+
+nano /etc/fstab
+
+/dev/sda /home1/sda ext4  defaults  0  2
+/dev/sdb /home1/sdb ext4  defaults  0  2
+/dev/sdc /home1/sdc ext4  defaults  0  2
+/dev/sdd /home1/sdd ext4  defaults  0  2
+
+
+/dev/sdb /home ext4  defaults  0  2
+
+wp config ssl fix
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+    $_SERVER['HTTPS'] = 'on';
+    $_SERVER['SERVER_PORT'] = 443;
+}
+
+network activate linux 
+nmtui
+
+vestacp helo problem exim-4.94
+yum remove exim -y
+yum install https://raw.githubusercontent.com/KashifHK123/server-fixes/master/vestacp/exim-4.93-3.el7.x86_64.rpm -y 
+
+cp exim.conf.rpmsave exim.conf
+
+comment lines
+
+# drop    condition     = ${if isip{$sender_helo_name}}
+  #        message       = Access denied - Invalid HELO name (See RFC2821 4.1.3)
+  
+  
+  
+remi php7.4
+centos 7
+wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm --no-check-certificate
+wget https://rpms.remirepo.net/enterprise/remi-release-7.rpm --no-check-certificate
+rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
+yum install yum-utils -y
+yum-config-manager --enable remi-php74
+yum-config-manager --disable remi-php81
+yum-config-manager --disable remi-php80
+yum-config-manager --disable remi-php8
+yum-config-manager --disable remi-php7
+yum-config-manager --disable remi-php70
+yum-config-manager --disable remi-php71
+yum-config-manager --disable remi-php72
+yum-config-manager --disable remi-php73
+yum-config-manager --disable remi-php54
+yum-config-manager --disable remi-php55
+yum-config-manager --disable remi-php56
+
+ffmpeg install latest version
+yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm -y
+
+yum install ffmpeg ffmpeg-devel
