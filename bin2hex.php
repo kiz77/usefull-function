@@ -22,3 +22,12 @@ function hexToStr($hex){
     }
     return $string;
 }
+
+function ASCIIBinText($bin){
+	$text = array();
+	$bin = explode(" ", $bin);
+	for($i=0; count($bin)>$i; $i++)
+		$text[] = chr(bindec($bin[$i]));
+		
+	return implode($text);
+}
