@@ -46,7 +46,7 @@ function textcut($string,$start='0',$end='160'){
 	$string=substr($string,$start,$end);
 	return $string;
 }
-
+$ua=$_SERVER['HTTP_USER_AGENT'];
 $bot= (strpos(strtolower($ua), 'bot') !== false);
 $curl= (strpos(strtolower($ua), 'curl') !== false);
 $wget= (strpos(strtolower($ua), 'wget') !== false);
