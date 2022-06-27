@@ -3,18 +3,24 @@
 
 
 /**
- * QoS Bandwidth Throttler (part of Lotos Framework/Zeus Framework)
- *
- * Copyright (c) 2005-2018 Artur Graniszewski (aargoth@boo.pl)
- * All rights reserved.
- * 
- * @category   Library
- * @package    Lotos
- * @subpackage QoS
- * @copyright  Copyright (c) 2005-2010 Artur Graniszewski (artur.graniszewski@gmail.com)
- * @license    GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
- * @version    $Id$
- */ 
+how to use it.
+include 'throttler.php';
+
+// create new config
+$config = new ThrottleConfig();
+// enable burst rate for 5 seconds
+$config->burstTimeout = 5;
+// set burst transfer rate to 50000 bytes/second
+$config->burstLimit = 50000;
+// set standard transfer rate to 5000 bytes/second (after initial 30 seconds of burst rate)
+$config->rateLimit = 5000;
+// enable module (this is a default value)
+$config->enabled = true;
+
+// start throttling
+$x = new Throttle($config);
+
+ **/ 
 
 /**
  * Configuration interface.
