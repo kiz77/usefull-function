@@ -1,7 +1,6 @@
 <?php
 /**
- * User: a-le
- * Date: 2013-11-16
+  * Date: 2013-11-16
  * version : 1.0
  * PHP >= 5.4
  * File based session storage, with no session locking.
