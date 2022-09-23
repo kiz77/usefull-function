@@ -1,0 +1,77 @@
+slmgr.vbs /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+slmgr.vbs /skms kms.lotro.cc
+slmgr.vbs /ato
+
+s8.uk.to
+s9.us.to
+home single language
+slmgr.vbs /ipk 7HNRX-D7KGG-3K4RQ-4WPJ4-YTDFH
+
+slmgr.vbs /ipk ZK7JG-NPHTM-C97JM-9MPGT-3V66T
+
+VK7JG-NPHTM-C97JM-9MPGT-3V66T
+	YTMG3-N6DKC-DKB77-7M9GH-8HVX7
+
+win 8.1
+slmgr.vbs /ipk GCRJD-8NW9H-F2CDX-CCM8D-9D6T9
+slmgr.vbs /skms s9.us.to
+slmgr.vbs /ato
+
+WINDOWS VERSION	 PRODUCT KEYS
+Windows 10 Home	TX9XD-98N7V-6WMQ6-BX7FG-H8Q99
+Windows 10 Enterprise	NPPR9-FWDCX-D2C8J-H872K-2YT43
+Windows 10 Education	NW6C2-QMPVW-D7KKK-3GKT6-VCFB2
+Windows 10 Enterprise 2015 LTSB	WNMTR-4C88C-JK8YV-HQ7T2-76DF9
+Windows 10 Enterprise 2016 LTSB	DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ
+Windows Server 2016 Datacenter	CB7KF-BWN84-R7R2Y-793K2-8XDDG
+Windows Server 2016 Standard	WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY
+Windows Server 2016 Essentials	JCKRF-N37P4-C2D82-9YXRT-4M63B
+Windows Server 2019 Datacenter	WMDGN-G9PQG-XVVXX-R3X43-63DFG
+Windows Server 2019 Standard	N69G4-B89J2-4G8F4-WWYCC-J464C
+Windows Server 2019 Essentials	WVDHN-86M7X-466P6-VHXV7-YY726
+Windows 10 S	3NF4D-GF9GY-63VKH-QRC3V-7QW8P
+Windows 10 Professional N	Windows 10 Professional N
+Windows 10 Professional N	MH37W-N47XK-V7XM9-C7227-GCQG9
+Windows 10 Enterprise N	DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4
+Windows 10 Education N	2WH4N-8QGBV-H22JP-CT43Q-MDWWJ
+Windows 10 Enterprise 2015 LTSB N	2F77B-TNFGY-69QQF-B8YKP-D69TJ
+Windows 10 Enterprise 2016 LTSB N	QFFDN-GRT3P-VKWWX-X7T3R-8B639
+Windows 10 Home N	3KHY7-WNT83-DGQKR-F7HPR-844BM
+Windows 10 Professional	W269N-WFGWX-YVC9B-4J6C9-T83GX
+
+
+Command: 
+net stop wuauserv
+net stop cryptSvc
+net stop bits
+net stop msiserver
+
+
+Ren C:\Windows\SoftwareDistribution SoftwareDistribution.old
+Ren C:\Windows\System32\catroot2 Catroot2.old
+
+net start wuauserv
+net start cryptSvc
+net start bits
+net start msiserver
+
+
+
+Windows 7 Professional Product Key
+
+    slmgr.vbs /ipk GMJQF-JC7VC-76HMH-M4RKY-V4HX6
+    237XB-GDJ7B-MV8MH-98QJM-24367
+    AXBS6-LR9OV-MEYF5-RMJB9-UCRT2P
+    4BBWE-OP782-7IRPO-55WUI-RPIO7
+    FJH38-9YYTR-3RHFDJ-KSFDH-PPTR5
+    WEOPT-UIORE-TY896-7893-NCVM2
+	
+	Windows 7 Ultimate Product Key
+
+    JHY4Q-NH85H-XK8VD-9Y68P-RFQ43
+    45KI6-6GY6Y-KHXCQ-7DDY6-TF7CD
+    LOHY7-P3ERP-ZXYCV-Q2H7C-FCGFR
+    YM8MJ-JKTGM-8GFQ6-X499R-FT7V7
+    2T7KM-3K29X-93T9J-M4CMV-B9YB2
+    EHY4Q-VB55H-XK8VD-5Y68P-RFQ43
+    P72CK-2Y3B8-YGHDV-293QB-QKJJM
