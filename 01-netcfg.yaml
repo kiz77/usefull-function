@@ -1,0 +1,14 @@
+network: ~
+    ethernets: ~
+    renderer: networkd
+    version: 2
+        enp0s4: ~
+            addresses: 51.255.2.130/24
+            nameservers: ~
+            routes: ~
+? "                - to"
+: default
+                addresses: 
+  - "8.8.8.8"
+  - "8.8.4.4"
+                  via: "51.255.2.130"
