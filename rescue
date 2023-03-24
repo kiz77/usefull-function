@@ -1,0 +1,16 @@
+mount rescue mode 
+
+mount -o bind /dev /home1/dev
+mount -t proc proc /home1/proc
+mount -t sysfs sys /home1/sys
+chroot /home1
+mount /dev/sda2 /mnt
+mount --bind /proc /mnt/proc
+mount --rbind /dev /mnt/dev
+mount --bind /sys /mnt/sys 
+chroot /mnt
+
+/usr/sbin/mysqld  --user=mysql  --skip-grant-tables &
+
+exclue database from mysqldump
+mysql -e "show databases;" | grep -Ev "Database|mysql|sys|information_schema" | xargs mysqldump --databases >sam.sql
