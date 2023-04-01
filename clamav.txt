@@ -1,0 +1,3 @@
+cd location
+/// scan file and display only infected files in log file.
+clamscan -ir -l clamav.log
