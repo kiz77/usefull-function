@@ -1,0 +1,36 @@
+Last Updated: May 29th, 2022 Xiao Guoan (Admin) 16 Comments
+Ubuntu
+
+This tutorial is going to show you how to disable IPv6 on Ubuntu. Why do you want to disable IPv6? Although IPv6 is the future, right now many systems and applications still rely on IPv4 and may not work well with IPv6.
+
+For example, if a software repository supports IPv6, then the APT package manager will connect to that repository via IPv6 regardless of whether or not your ISP supports IPv6, as shown in the screenshot below.
+
+disable ipv6 ubuntu
+Method 1: Disable IPv6 on Ubuntu via GRUB Boot Loader
+
+This is the easiest method, but it requires you to reboot your computer.
+
+GRUB is the standard boot loader on Linux distributions. Edit the GRUB configuration file with a command-line text editor like Nano.
+###
+sudo nano /etc/default/grub
+###
+Find the following line.
+#####
+GRUB_CMDLINE_LINUX=""
+####
+Change it to:
+###
+GRUB_CMDLINE_LINUX="ipv6.disable=1"
+###
+Disable IPv6 on Ubuntu via GRUB Boot Loader
+
+Save and close the file. (Press Ctrl+O, then press Enter to save a file in Nano text editor. Next, press Ctrl+X to exit.)
+
+Update GRUB boot menu.
+####
+sudo update-grub
+###
+And reboot your computer.
+####
+reboot
+####
