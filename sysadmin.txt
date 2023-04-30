@@ -1,3 +1,6 @@
+#change admin password using shell
+#user:pass
+echo "admin:sam321" | /usr/sbin/chpasswd
 # usefull system admin commands.
 speed test
 wget -O /dev/null http://speedtest.ftp.otenet.gr/files/test1Gb.db
