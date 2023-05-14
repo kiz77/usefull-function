@@ -2,6 +2,11 @@ slmgr.vbs /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
 slmgr.vbs /skms kms.lotro.cc
 slmgr.vbs /ato
 
+windows server datacenter 2022 active
+dism /online /set-edition:serverdatacenter /productkey:WX4NM-KYWYW-QJJR4-XV3QB-6VM33 /accepteula
+slmgr.vbs /skms kms.lotro.cc
+slmgr.vbs /ato
+
 s8.uk.to
 s9.us.to
 home single language
