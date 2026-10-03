@@ -95,6 +95,9 @@ find / -name "libpcre.so"
 delete all files from folder
 find . -type f -exec rm -v {} \;
 
+folder delete also
+find . -mindepth 1 -maxdepth 1 -exec rm -rfv {} \;
+
 ln -s /home/wapkizextra/httpdlog /var/log/httpd/domains
 ln -s /home/mysql/mysql.sock /var/lib/mysql/mysql.sock
 ln -s /home/mysql /var/lib/mysql
