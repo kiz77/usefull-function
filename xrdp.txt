@@ -96,8 +96,29 @@ sudo systemctl status xrdp
 sudo ufw allow 3389
 
 #### handbrake installation ubuntu ######
+
 ubuntu handbrake
 apt install software-properties-common
 sudo add-apt-repository ppa:stebbins/handbrake-releases
 sudo apt update
 sudo apt install --install-recommends handbrake-gtk
+
+
+#### lxqt display installed good then xfce4#####
+sudo apt install -y lxqt xrdp xorgxrdp dbus-x11
+
+sudo tee /etc/xrdp/startwm.sh > /dev/null <<'EOF'
+#!/bin/sh
+
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=LXQt
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-LXQt:/etc/xdg
+export XDG_DATA_DIRS=/usr/share/lxqt:/usr/local/share:/usr/share
+
+exec dbus-run-session -- startlxqt
+EOF
+
+sudo chmod +x /etc/xrdp/startwm.sh
+
+sudo systemctl restart xrdp-sesman
+sudo systemctl restart xrdp
